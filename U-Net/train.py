@@ -4,8 +4,7 @@ import datetime
 
 import torch
 
-from src import UNet
-from src import ULite
+import UNet
 from train_utils import train_one_epoch, evaluate, create_lr_scheduler
 from my_dataset import DriveDataset
 import transforms as T
@@ -60,10 +59,6 @@ def get_transform(train, mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)):
 # 定义模型创建函数，实例化UNet类创建模型，传入通道数，分割类别数，
 def create_model(num_classes):
     model = UNet(in_channels=3, num_classes=num_classes, base_c=64)   # 输入通道数为3，分类类别数为2，
-    # model = MobileV3Unet(num_classes=num_classes, pretrain_backbone=True)
-    # model = VGG16UNet(num_classes=num_classes, pretrain_backbone=True)
-    # model = ULite(in_channels=3, num_classes=num_classes)
-
     return model
 
 
